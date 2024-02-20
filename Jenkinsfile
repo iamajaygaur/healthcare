@@ -26,9 +26,9 @@ pipeline {
        stage("Docker build"){
             steps {
 				sh 'docker version'
-				sh "docker build -t iamajaygaur/healthcare-eta-app:${BUILD_NUMBER} ."
+				sh "docker build -t iamajaygaur/health-care:${BUILD_NUMBER} ."
 				sh 'docker image list'
-				sh "docker tag iamajaygaur/healthcare-eta-app:${BUILD_NUMBER} iamajaygaur/healthcare-eta-app:latest"
+				sh "docker tag iamajaygaur/health-care:${BUILD_NUMBER} iamajaygaur/health-care:latest"
             }
         }
 		stage('Login2DockerHub') {
@@ -40,7 +40,7 @@ pipeline {
 		stage('Push2DockerHub') {
 
 			steps {
-				sh "docker push iamajaygaur/healthcare-eta-app:latest"
+				sh "docker push iamajaygaur/health-care:latest"
 			}
 		}
         stage('Deploy to Kubernetes Dev Environment') {
